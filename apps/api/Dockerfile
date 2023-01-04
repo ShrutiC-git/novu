@@ -12,7 +12,7 @@ ARG PACKAGE_PATH
 
 COPY ./meta .
 COPY ./deps .
-COPY ./pkg .
+# COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
