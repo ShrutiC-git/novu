@@ -11,9 +11,9 @@ WORKDIR /usr/src/app
 FROM dev_base AS dev
 ARG PACKAGE_PATH
 
-COPY ./meta .
-COPY ./deps .
-COPY ./pkg .
+# COPY ./meta .
+# COPY ./deps .
+# COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
@@ -48,7 +48,7 @@ ENV CI=true
 
 WORKDIR /usr/src/app
 
-COPY ./meta .
+# COPY ./meta .
 
 # Get the build artifacts that only include dist folders
 COPY --from=assets /usr/src/app .
