@@ -8,6 +8,14 @@ RUN pnpm --version
 WORKDIR /usr/src/app
 COPY package.json .
 COPy .npmrc .
+
+COPY apps/api ./apps/api
+COPY tsconfig.json .
+COPY tsconfig.base.json .
+COPY nx.json .
+COPY pnpm-workspace.yaml .
+COPY pnpm-lock.yaml .
+
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
