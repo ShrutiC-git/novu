@@ -175,7 +175,7 @@ importers:
       '@novu/application-generic': ^0.10.1
       '@novu/burst-sms': ^0.10.1
       '@novu/clickatell': ^0.10.1
-      '@novu/dal': ^0.10.1
+      # '@novu/dal': ^0.10.1
       '@novu/discord': ^0.10.1
       '@novu/emailjs': ^0.10.1
       '@novu/expo': ^0.10.1
@@ -204,7 +204,7 @@ importers:
       '@novu/stateless': ^0.10.1
       '@novu/telnyx': ^0.10.1
       '@novu/termii': ^0.10.1
-      '@novu/testing': ^0.10.1
+      # '@novu/testing': ^0.10.1
       '@novu/twilio': ^0.10.1
       '@sendgrid/mail': ^7.6.0
       '@sentry/hub': 7.22.0
