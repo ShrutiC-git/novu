@@ -5,6 +5,7 @@ RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
 
 RUN pnpm --version
 RUN apk update && apk add git
+RUN npm install -g @nestjs/cli
 WORKDIR /usr/src/app
 
 COPY .npmrc .
