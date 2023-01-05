@@ -16,7 +16,7 @@ ARG PACKAGE_PATH
 # COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
+ pnpm install --filter "novuhq" \
  --frozen-lockfile\
  --unsafe-perm\
  --reporter=silent
