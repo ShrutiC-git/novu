@@ -39,9 +39,7 @@ RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
 RUN pnpm add @babel/core -w
 
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
-
-RUN pnpm dlx husky install
-RUN NX_DAEMON=false pnpm build:api
+RUN NX_DAEMON=false npm cache clear --force pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
