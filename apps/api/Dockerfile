@@ -4,7 +4,7 @@ RUN npm i pm2 -g
 RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
 
 RUN pnpm --version
-
+RUN apk update && apk add git
 WORKDIR /usr/src/app
 COPY package.json .
 COPy .npmrc .
