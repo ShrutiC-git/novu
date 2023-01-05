@@ -38,7 +38,7 @@ RUN --mount=type=cache,id=pnpm-store-web,target=/root/.pnpm-store\
 
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
-RUN pnpm husky install
+RUN pnpm dlx husky install
 RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
