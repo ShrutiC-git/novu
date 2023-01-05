@@ -98,6 +98,7 @@ RUN npm install -g @nestjs/cli
 
 COPY .npmrc .
 COPY package.json .
+COPY pnpm-lock.yaml .
 
 
 # ------- DEV BUILD ----------
