@@ -110,9 +110,7 @@ ARG PACKAGE_PATH
 # COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install \
- --frozen-lockfile\
- --unsafe-perm\
+ pnpm install
 
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
