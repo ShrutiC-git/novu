@@ -134,7 +134,7 @@ ENV CI=true
 
 WORKDIR /usr/src/app
 
-COPY ./meta .
+# COPY ./meta .
 
 # Get the build artifacts that only include dist folders
 COPY --from=assets /usr/src/app .
