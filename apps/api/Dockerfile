@@ -11,8 +11,8 @@ COPY .npmrc .
 COPY package.json .
 
 COPY apps/api ./apps/api
-COPY libs/dal ./libs/dal
-COPY libs/testing ./libs/testing
+# COPY libs/dal ./libs/dal
+# COPY libs/testing ./libs/testing
 COPY packages/client ./packages/client
 COPY libs/shared ./libs/shared
 COPY packages/notification-center ./packages/notification-center
