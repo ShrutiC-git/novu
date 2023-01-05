@@ -140,6 +140,10 @@
     "tsconfig-paths": "3.11.0",
     "typescript": "4.3.5"
   },
+  "peerDependencies": {
+    "@novu/dal":"^0.10.1",
+    "@novu/testing":"^0.10.1"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"
