@@ -15,12 +15,10 @@ ARG PACKAGE_PATH
 # COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
- --frozen-lockfile\
- --unsafe-perm\
- --reporter=silent
-
-RUN pnpm install
+ pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."
+#  --frozen-lockfile\
+#  --unsafe-perm\
+#  --reporter=silent
 
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
