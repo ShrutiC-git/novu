@@ -109,7 +109,7 @@ ARG PACKAGE_PATH
 # COPY ./deps .
 # COPY ./pkg .
 
-RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
+RUN id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install
 
 
