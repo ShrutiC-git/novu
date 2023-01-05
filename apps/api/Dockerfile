@@ -33,8 +33,10 @@ ARG PACKAGE_PATH
 # COPY ./deps .
 # COPY ./pkg .
 
-RUN --mount=type=cache,id=pnpm-store-web,target=/root/.pnpm-store\
+RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
   pnpm install
+
+RUN pnpm add @babel/core -w
 
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
