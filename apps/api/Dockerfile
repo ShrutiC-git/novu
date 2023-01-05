@@ -25,7 +25,7 @@ COPY tsconfig.base.json .
 
 COPY nx.json .
 COPY pnpm-workspace.yaml .
-COPY pnpm-lock.yaml .
+# COPY pnpm-lock.yaml .
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
@@ -42,6 +42,7 @@ RUN pnpm add @babel/core -w
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
 RUN npm cache clear --force
+RUN rm -rf node_modules
 RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
