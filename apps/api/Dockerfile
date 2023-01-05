@@ -6,6 +6,7 @@ RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
 RUN pnpm --version
 RUN apk update && apk add git
 WORKDIR /usr/src/app
+
 COPY package.json .
 COPy .npmrc .
 
@@ -18,6 +19,9 @@ COPY libs/shared ./libs/shared
 COPY packages/notification-center ./packages/notification-center
 COPY packages/stateless ./packages/stateless
 COPY packages/node ./packages/node
+
+COPY tsconfig.json .
+COPY tsconfig.base.json .
 
 COPY nx.json .
 COPY pnpm-workspace.yaml .
