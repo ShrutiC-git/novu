@@ -35,7 +35,7 @@ ARG PACKAGE_PATH
 # COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
-  pnpm install --legacy-peer-deps
+  pnpm install
 
 RUN pnpm add @babel/core -w
 
