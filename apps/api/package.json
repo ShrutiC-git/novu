@@ -41,6 +41,7 @@
     "@novu/burst-sms": "^0.10.1",
     "@novu/clickatell": "^0.10.1",
     "@novu/discord": "^0.10.1",
+    "@novu/dal": "^0.10.1",
     "@novu/emailjs": "^0.10.1",
     "@novu/expo": "^0.10.1",
     "@novu/fcm": "^0.10.1",
