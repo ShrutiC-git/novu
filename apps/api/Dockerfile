@@ -35,7 +35,7 @@ ARG PACKAGE_PATH
 # COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
-  npm install --legacy-peer-deps
+  pnpm install --legacy-peer-deps
 
 RUN pnpm add @babel/core -w
 
@@ -43,7 +43,7 @@ COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
 RUN npm cache clear --force
 RUN rm -rf node_modules
-RUN NX_DAEMON=false npm build:api
+RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
