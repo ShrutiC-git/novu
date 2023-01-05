@@ -20,7 +20,7 @@ RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  --unsafe-perm\
  --reporter=silent
 
-RUN cp ./package.json . && npm install
+RUN pnpm install
 
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
