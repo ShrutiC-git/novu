@@ -10,6 +10,15 @@ COPY package.json .
 COPy .npmrc .
 
 COPY apps/api ./apps/api
+
+COPY libs/dal ./libs/dal
+COPY libs/testing ./libs/testing
+COPY packages/client ./packages/client
+COPY libs/shared ./libs/shared
+COPY packages/notification-center ./packages/notification-center
+COPY packages/stateless ./packages/stateless
+COPY packages/node ./packages/node
+
 COPY nx.json .
 COPY pnpm-workspace.yaml .
 COPY pnpm-lock.yaml .
