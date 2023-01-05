@@ -6,7 +6,7 @@ RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
 RUN pnpm --version
 
 WORKDIR /usr/src/app
-RUN cp package.json /usr/src/app && npm install
+RUN cp package.json . && npm install
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
