@@ -11,6 +11,8 @@ COPy .npmrc .
 
 COPY apps/api ./apps/api
 COPY nx.json .
+COPY pnpm-workspace.yaml .
+COPY pnpm-lock.yaml .
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
@@ -22,7 +24,7 @@ ARG PACKAGE_PATH
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install
 
-RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
+RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
