@@ -7,6 +7,10 @@ RUN pnpm --version
 
 WORKDIR /usr/src/app
 COPY package.json .
+COPy .npmrc .
+
+COPY apps/api ./apps/api
+COPY nx.json .
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
@@ -17,10 +21,6 @@ ARG PACKAGE_PATH
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install
-
-COPY .npmrc .
-COPY apps/api ./apps/api
-COPY nx.json .
 
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
