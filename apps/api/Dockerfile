@@ -93,6 +93,13 @@ RUN pnpm --version
 
 WORKDIR /usr/src/app
 
+RUN apk update && apk add git
+RUN npm install -g @nestjs/cli
+
+COPY .npmrc .
+COPY package.json .
+
+
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
