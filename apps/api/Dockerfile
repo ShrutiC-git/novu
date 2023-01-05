@@ -112,6 +112,9 @@ ARG PACKAGE_PATH
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install
 
+
+COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
+
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
