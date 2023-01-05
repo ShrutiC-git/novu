@@ -39,7 +39,9 @@ RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
 RUN pnpm add @babel/core -w
 
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
-RUN NX_DAEMON=false npm cache clear --force pnpm build:api
+
+RUN npm cache clear --force
+RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
