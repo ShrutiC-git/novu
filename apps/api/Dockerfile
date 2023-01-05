@@ -6,6 +6,7 @@ RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
 RUN pnpm --version
 
 WORKDIR /usr/src/app
+COPY package.json .
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
@@ -15,7 +16,7 @@ ARG PACKAGE_PATH
 # COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install --filter "@novu/api" --filter "{${PACKAGE_PATH}}..."
+ pnpm install
 #  --frozen-lockfile\
 #  --unsafe-perm\
 #  --reporter=silent
