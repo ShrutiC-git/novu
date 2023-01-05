@@ -97,9 +97,9 @@ WORKDIR /usr/src/app
 FROM dev_base AS dev
 ARG PACKAGE_PATH
 
-COPY ./meta .
-COPY ./deps .
-COPY ./pkg .
+# COPY ./meta .
+# COPY ./deps .
+# COPY ./pkg .
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
