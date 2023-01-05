@@ -33,8 +33,8 @@ ARG PACKAGE_PATH
 # COPY ./deps .
 # COPY ./pkg .
 
-RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install
+RUN --mount=type=cache,id=pnpm-store-web,target=/root/.pnpm-store\
+  pnpm install
 
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
