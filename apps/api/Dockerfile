@@ -7,11 +7,10 @@ RUN pnpm --version
 RUN apk update && apk add git
 WORKDIR /usr/src/app
 
+COPY .npmrc .
 COPY package.json .
-COPy .npmrc .
 
 COPY apps/api ./apps/api
-
 COPY libs/dal ./libs/dal
 COPY libs/testing ./libs/testing
 COPY packages/client ./packages/client
@@ -36,6 +35,8 @@ ARG PACKAGE_PATH
 
 RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  pnpm install
+
+COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
 RUN NX_DAEMON=false pnpm build:api
 
