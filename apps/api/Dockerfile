@@ -7,6 +7,7 @@ RUN pnpm --version
 
 WORKDIR /usr/src/app
 COPY package.json .
+COPy .npmrc .
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
