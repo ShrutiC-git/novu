@@ -69,6 +69,8 @@
     "@commitlint/config-angular": "^13.2.0",
     "@commitlint/config-conventional": "17.0.0",
     "@cspell/eslint-plugin": "^6.14.3",
+    "@novu/dal": "^0.10.1",
+    "@novu/testing":"^0.10.1",
     "@nrwl/cli": "13.8.5",
     "@nest/core": "4.5.4",
     "@nrwl/eslint-plugin-nx": "13.8.5",
@@ -188,6 +190,8 @@
   },
   "dependencies": {
     "nx": "^14.5.10",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "@novu/dal": "^0.10.1",
+    "@novu/testing":"^0.10.1"
   }
 }
