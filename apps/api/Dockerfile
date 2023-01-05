@@ -93,36 +93,19 @@ RUN pnpm --version
 
 WORKDIR /usr/src/app
 
-RUN apk update && apk add git
-RUN npm install -g @nestjs/cli
-
-COPY .npmrc .
-COPY package.json .
-COPY pnpm-lock.yaml .
-
-COPY apps/web ./apps/web
-COPY libs/dal ./libs/dal
-COPY libs/testing ./libs/testing
-COPY packages/client ./packages/client
-COPY libs/shared ./libs/shared
-COPY packages/notification-center ./packages/notification-center
-COPY packages/stateless ./packages/stateless
-COPY packages/node ./packages/node
-
-
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
 
-# COPY ./meta .
-# COPY ./deps .
-# COPY ./pkg .
+COPY ./meta .
+COPY ./deps .
+COPY ./pkg .
 
-RUN id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install
-
-
-COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
+RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
+ pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
+ --frozen-lockfile\
+ --unsafe-perm\
+ --reporter=silent
 
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
@@ -151,7 +134,7 @@ ENV CI=true
 
 WORKDIR /usr/src/app
 
-# COPY ./meta .
+COPY ./meta .
 
 # Get the build artifacts that only include dist folders
 COPY --from=assets /usr/src/app .
