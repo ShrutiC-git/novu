@@ -37,11 +37,11 @@
     "@nestjs/swagger": "6.0.1",
     "@nestjs/terminus": "9.0.0",
     "@novu/apns": "^0.10.1",
+    "@novu/application-generic": "^0.10.1",
     "@novu/burst-sms": "^0.10.1",
     "@novu/clickatell": "^0.10.1",
-    "@novu/discord": "^0.10.1",
     "@novu/dal": "^0.10.1",
-    "@novu/application-generic": "^0.10.1",
+    "@novu/discord": "^0.10.1",
     "@novu/emailjs": "^0.10.1",
     "@novu/expo": "^0.10.1",
     "@novu/fcm": "^0.10.1",
@@ -69,6 +69,7 @@
     "@novu/stateless": "^0.10.1",
     "@novu/telnyx": "^0.10.1",
     "@novu/termii": "^0.10.1",
+    "@novu/testing": "^0.10.1",
     "@novu/twilio": "^0.10.1",
     "@sendgrid/mail": "^7.6.0",
     "@sentry/hub": "7.22.0",
@@ -94,7 +95,7 @@
     "hat": "^0.0.3",
     "helmet": "^6.0.1",
     "ioredis": "^5.2.4",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "9.0.0",
     "lodash": "^4.17.15",
     "nanoid": "^3.1.20",
     "nest-raven": "8.2.0",
@@ -117,8 +118,6 @@
   "devDependencies": {
     "@faker-js/faker": "^6.0.0",
     "@nestjs/cli": "9.0.0",
-    "@novu/dal": "^0.10.1",
-    "@novu/testing":"^0.10.1",
     "@nestjs/schematics": "9.0.1",
     "@nestjs/testing": "9.0.2",
     "@types/bcrypt": "^3.0.0",
@@ -139,10 +138,6 @@
     "ts-node": "^9.0.0",
     "tsconfig-paths": "3.11.0",
     "typescript": "4.3.5"
-  },
-  "peerDependencies": {
-    "@novu/dal":"^0.10.1",
-    "@novu/testing":"^0.10.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
