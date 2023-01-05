@@ -27,7 +27,7 @@ services:
       - 27017:27017
     restart: unless-stopped
   api:
-    image: "ghcr.io/novuhq/novu/api:latest"
+    image: "ghcr.io/novuhq/novu/api:0.10.1"
     depends_on:
       - mongodb
       - redis
