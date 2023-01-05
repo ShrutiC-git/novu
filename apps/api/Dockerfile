@@ -6,7 +6,6 @@ RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
 RUN pnpm --version
 
 WORKDIR /usr/src/app
-RUN cp package.json . && npm install
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
@@ -20,6 +19,8 @@ RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  --frozen-lockfile\
  --unsafe-perm\
  --reporter=silent
+
+RUN cp ./package.json . && npm install
 
 RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
 
