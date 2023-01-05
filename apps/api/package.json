@@ -37,7 +37,6 @@
     "@nestjs/swagger": "6.0.1",
     "@nestjs/terminus": "9.0.0",
     "@novu/apns": "^0.10.1",
-    "@novu/application-generic": "^0.10.1",
     "@novu/burst-sms": "^0.10.1",
     "@novu/clickatell": "^0.10.1",
     "@novu/discord": "^0.10.1",
