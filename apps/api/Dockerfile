@@ -41,7 +41,10 @@ RUN npm cache clear --force
 RUN rm -rf node_modules
 
 RUN id=pnpm-store-api,target=/root/.pnpm-store\
-  pnpm install
+  pnpm install \
+   --frozen-lockfile \
+ --unsafe-perm \
+ --reporter=silent
 
 # RUN pnpm install
 
