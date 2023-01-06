@@ -40,16 +40,16 @@ ARG PACKAGE_PATH
 RUN npm cache clear --force
 RUN rm -rf node_modules
 
-# RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
-#   pnpm install
+RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
+  pnpm install
 
-RUN pnpm install
+# RUN pnpm install
 
-RUN pnpm add @babel/core -w
+# RUN pnpm add @babel/core -w
 
-COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
+# COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
-RUN NX_DAEMON=false pnpm build:api
+# RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
