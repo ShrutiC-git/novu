@@ -27,6 +27,7 @@ COPY tsconfig.base.json .
 COPY nx.json .
 COPY pnpm-workspace.yaml .
 COPY pnpm-lock.yaml .
+COPY ./apps/api/pnpm-lock.yaml ./apps/api/pnpm-lock.yaml
 
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
