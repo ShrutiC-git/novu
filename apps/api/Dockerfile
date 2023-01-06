@@ -24,7 +24,7 @@ COPY packages/application-generic ./packages/application-generic
 
 COPY tsconfig.json .
 COPY tsconfig.base.json .
-
+COPY nest-cli.json .
 COPY nx.json .
 COPY pnpm-workspace.yaml .
 COPY pnpm-lock.yaml .

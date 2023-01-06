@@ -4,6 +4,9 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { Type } from '@nestjs/common/interfaces/type.interface';
 import { ForwardReference } from '@nestjs/common/interfaces/modules/forward-reference.interface';
 
+
+import { ConfigModule } from '@nestjs/config';
+
 import { SharedModule } from './app/shared/shared.module';
 import { UserModule } from './app/user/user.module';
 import { AuthModule } from './app/auth/auth.module';
@@ -33,6 +36,7 @@ import { TopicsModule } from './app/topics/topics.module';
 const modules: Array<Type | DynamicModule | Promise<DynamicModule> | ForwardReference> = [
   OrganizationModule,
   SharedModule,
+  ConfigModule.forRoot(),
   UserModule,
   AuthModule,
   HealthModule,
