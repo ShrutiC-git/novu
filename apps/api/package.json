@@ -139,6 +139,11 @@
     "tsconfig-paths": "3.11.0",
     "typescript": "4.3.5"
   },
+  "peerDependencies": {
+    "@novul/dal":"libs/shared",
+    "@novul/testing":"libs/shared"
+  },
+
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"

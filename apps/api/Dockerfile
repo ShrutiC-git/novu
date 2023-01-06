@@ -15,11 +15,11 @@ COPY package.json .
 COPY apps/api ./apps/api
 COPY libs/dal ./libs/dal
 COPY libs/testing ./libs/testing
-COPY packages/client ./packages/client
-COPY libs/shared ./libs/shared
-COPY packages/notification-center ./packages/notification-center
-COPY packages/stateless ./packages/stateless
-COPY packages/node ./packages/node
+# COPY packages/client ./packages/client
+# COPY libs/shared ./libs/shared
+# COPY packages/notification-center ./packages/notification-center
+# COPY packages/stateless ./packages/stateless
+# COPY packages/node ./packages/node
 
 COPY tsconfig.json .
 COPY tsconfig.base.json .
@@ -39,8 +39,10 @@ ARG PACKAGE_PATH
 RUN npm cache clear --force
 RUN rm -rf node_modules
 
-RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
-  pnpm install
+# RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
+#   pnpm install
+
+RUN pnpm install
 
 RUN pnpm add @babel/core -w
 
