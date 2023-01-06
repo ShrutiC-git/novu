@@ -41,7 +41,7 @@
     "docker:build": "pnpm -r --if-present --parallel docker:build",
     "build": "nx run-many --target=build --exclude=angular-notification-center-example,vue-notification-center-example --all",
     "prebuild": "nx run-many --target=prebuild --all",
-    "build:api": "nx build @novu/api --projects=@novu/api",
+    "build:api": "nx build @novu/api --projects=@novu/api --exclude=application-generic",
     "build:ws": "nx build @novu/ws",
     "build:webhook": "nx build @novu/webhook",
     "build:web": "nx build @novu/web",
