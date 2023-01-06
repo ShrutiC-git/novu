@@ -101,6 +101,10 @@ services:
       REACT_APP_ENVIRONMENT: local
     ports:
       - 4500:4500
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
 
   embed:
     depends_on:
