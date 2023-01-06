@@ -37,16 +37,13 @@ ARG PACKAGE_PATH
 # COPY ./deps .
 # COPY ./pkg .
 
-RUN npm cache clear --force
-RUN rm -rf node_modules
+# RUN npm cache clear --force
+# RUN rm -rf node_modules
 
-RUN id=pnpm-store-api,target=/root/.pnpm-store\
-  pnpm install \
-   --frozen-lockfile \
- --unsafe-perm \
- --reporter=silent
+# RUN id=pnpm-store-api,target=/root/.pnpm-store\
+#   pnpm install \
 
-# RUN pnpm install
+RUN pnpm install
 
 RUN pnpm add @babel/core -w
 
