@@ -46,11 +46,11 @@ RUN id=pnpm-store-api,target=/root/.pnpm-store\
 
 # RUN pnpm install
 
-# RUN pnpm add @babel/core -w
+RUN pnpm add @babel/core -w
 
 COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
 
-# RUN NX_DAEMON=false pnpm build:api
+RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
