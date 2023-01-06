@@ -24,9 +24,9 @@ export class NodemailerHandler extends BaseHandler {
       from: from as string,
       host: credentials.host as string,
       port: Number(credentials.port),
-      secure: credentials.secure,
-      user: credentials.user,
-      password: credentials.password,
+      secure: credentials.secure as boolean | null,
+      user: credentials.user as string  | null,
+      password: credentials.password as string | null,
       dkim: {
         domainName: credentials.domain as string,
         keySelector: credentials.accountSid as string,
