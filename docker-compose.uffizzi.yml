@@ -81,6 +81,10 @@ services:
       REACT_APP_DOCKER_HOSTED_ENV: 'true'
     ports:
       - 4200:4200
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
   widget:
     image: "${WIDGET_IMAGE}"
     depends_on:
