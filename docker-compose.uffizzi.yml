@@ -19,10 +19,10 @@ services:
     container_name: mongodb
     logging:
       driver: "none"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongodb
-      - MONGO_INITDB_ROOT_PASSWORD=mongodb
-      - MONGO_INITDB_DATABASE=novu-db
+    # environment:
+      # - MONGO_INITDB_ROOT_USERNAME=mongodb
+      # - MONGO_INITDB_ROOT_PASSWORD=mongodb
+      # - MONGO_INITDB_DATABASE=novu-db
     volumes:
       - mongodb:/data/db
     ports:
@@ -41,7 +41,7 @@ services:
       DISABLE_USER_REGISTRATION: false
       PORT: 3000
       FRONT_BASE_URL: http://localhost:4200
-      MONGO_URL: mongodb://mongodb:mongodb@localhost:27017
+      MONGO_URL: mongodb://localhost:27017
       REDIS_HOST: localhost
       REDIS_PORT: 6379
       REDIS_DB_INDEX: 2
