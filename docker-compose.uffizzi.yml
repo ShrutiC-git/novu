@@ -41,9 +41,9 @@ services:
       PORT: 3000
       FRONT_BASE_URL: http://localhost:4200
       MONGO_URL: mongodb://mongodb:@localhost27017/novu-db
-      # REDIS_HOST: ${REDIS_HOST}
-      # REDIS_PORT: ${REDIS_PORT}
-      # REDIS_DB_INDEX: 2
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      REDIS_DB_INDEX: 2
       # S3_LOCAL_STACK: ${S3_LOCAL_STACK}
       # S3_BUCKET_NAME: ${S3_BUCKET_NAME}
       # S3_REGION: ${S3_REGION}
@@ -56,6 +56,10 @@ services:
       # NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
     ports:
       - "3000:3000"
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
   ws:
     image: "${WS_IMAGE}"
     depends_on:
