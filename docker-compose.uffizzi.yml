@@ -41,7 +41,7 @@ services:
       DISABLE_USER_REGISTRATION: false
       PORT: 3000
       FRONT_BASE_URL: http://localhost:4200
-      MONGO_URL: mongodb://mongodb:mongodb@localhost:27017/novu-db
+      MONGO_URL: mongodb://mongodb:mongodb@localhost:27017
       REDIS_HOST: localhost
       REDIS_PORT: 6379
       REDIS_DB_INDEX: 2
