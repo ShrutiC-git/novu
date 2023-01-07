@@ -1,0 +1,125 @@
+version: "3"
+
+# uffizzi integration
+x-uffizzi:
+  ingress:
+    service: web
+    port: 4200
+
+services:
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    logging:
+      driver: "none"
+
+  mongodb:
+    image: mongo
+    # container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb:/data/db
+    # ports:
+    #   - 27017:27017
+    # restart: unless-stopped
+
+  api:
+    image: "${API_IMAGE}"
+    depends_on:
+      - mongodb
+      - redis
+    container_name: api
+    environment:
+      NODE_ENV: local
+      API_ROOT_URL: http://localhost:3000
+      DISABLE_USER_REGISTRATION: false
+      PORT: 3000
+      FRONT_BASE_URL: http://localhost:4200
+      MONGO_URL: mongodb://admin:password@localhost:27017/admin?authSource=admin
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      REDIS_DB_INDEX: 2
+      # S3_LOCAL_STACK: ${S3_LOCAL_STACK}
+      # S3_BUCKET_NAME: ${S3_BUCKET_NAME}
+      # S3_REGION: ${S3_REGION}
+      # AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      # AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      JWT_SECRET: your-secret
+      # STORE_ENCRYPTION_KEY: ${STORE_ENCRYPTION_KEY}
+      # SENTRY_DSN: ${SENTRY_DSN}
+      # NEW_RELIC_APP_NAME: ${NEW_RELIC_APP_NAME}
+      # NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+    ports:
+      - "3000:3000"
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
+  ws:
+    image: "${WS_IMAGE}"
+    depends_on:
+      - mongodb
+      - redis
+    container_name: ws
+    environment:
+      PORT: 3002
+      NODE_ENV: local
+      MONGO_URL: mongodb://admin:password@localhost27017/admin?authSource=admin
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      JWT_SECRET: your-secret
+    ports:
+      - "3002:3002"
+
+  web:
+    image: "${WEB_IMAGE}"
+    depends_on:
+      - api
+    container_name: web
+    environment:
+      REACT_APP_API_URL: http://localhost:3000
+      REACT_APP_ENVIRONMENT: local
+      REACT_APP_WIDGET_EMBED_PATH: http://localhost:4701/embed.umd.min.js
+      REACT_APP_DOCKER_HOSTED_ENV: 'true'
+    ports:
+      - 4200:4200
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
+
+  widget:
+    image: "${WIDGET_IMAGE}"
+    depends_on:
+      - api
+      - web
+    container_name: widget
+    environment:
+      REACT_APP_API_URL: http://localhost:3000
+      REACT_APP_WS_URL: http://localhost:3002
+      REACT_APP_ENVIRONMENT: local
+    ports:
+      - 4500:4500
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
+
+  embed:
+    depends_on:
+      - widget
+    image: "${EMBED_IMAGE}"
+    container_name: embed
+    environment:
+      WIDGET_URL: http://localhost:4500
+    ports:
+      - 4701:4701
+    deploy:
+          resources:
+            limits:
+              memory: 1000M
+volumes:
+  mongodb: ~

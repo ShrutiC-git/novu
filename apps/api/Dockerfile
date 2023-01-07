@@ -1,26 +1,55 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs16-alpine as dev_base
 
+WORKDIR /usr/src/app
+
 RUN npm i pm2 -g
 RUN npm --no-update-notifier --no-fund --global install pnpm@7.5.0
-RUN pnpm --version
 
-WORKDIR /usr/src/app
+RUN pnpm --version
+RUN apk update && apk add git
+RUN npm install -g @nestjs/cli
+
+COPY .npmrc .
+COPY package.json .
+
+COPY apps/api ./apps/api
+COPY libs/dal ./libs/dal
+COPY libs/testing ./libs/testing
+COPY packages/client ./packages/client
+COPY libs/shared ./libs/shared
+COPY packages/notification-center ./packages/notification-center
+COPY packages/stateless ./packages/stateless
+COPY packages/node ./packages/node
+COPY packages/application-generic ./packages/application-generic
+
+COPY tsconfig.json .
+COPY tsconfig.base.json .
+COPY apps/api/nest-cli.json apps/api/nest-cli.json
+COPY nx.json .
+COPY pnpm-workspace.yaml .
+COPY pnpm-lock.yaml .
 
 # ------- DEV BUILD ----------
 FROM dev_base AS dev
 ARG PACKAGE_PATH
 
-COPY ./meta .
-COPY ./deps .
-COPY ./pkg .
+# COPY ./meta .
+# COPY ./deps .
+# COPY ./pkg .
 
-RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
- pnpm install --filter "novuhq" --filter "{${PACKAGE_PATH}}..."\
- --frozen-lockfile\
- --unsafe-perm\
- --reporter=silent
+# RUN npm cache clear --force
+# RUN rm -rf node_modules
 
-RUN NODE_ENV=production NX_DAEMON=false pnpm build:api
+# RUN id=pnpm-store-api,target=/root/.pnpm-store\
+#   pnpm install \
+
+RUN pnpm install
+
+RUN pnpm add @babel/core -w
+
+COPY [".eslintrc.js",".prettierrc",".prettierignore", "./"]
+
+RUN NX_DAEMON=false pnpm build:api
 
 WORKDIR /usr/src/app/apps/api
 
@@ -47,7 +76,7 @@ ENV CI=true
 
 WORKDIR /usr/src/app
 
-COPY ./meta .
+# COPY ./meta .
 
 # Get the build artifacts that only include dist folders
 COPY --from=assets /usr/src/app .
@@ -59,4 +88,5 @@ RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  --reporter=silent
 
 WORKDIR /usr/src/app/apps/api
+RUN pnpm install
 CMD [ "pm2-runtime","start", "dist/main.js" ]
