@@ -88,4 +88,5 @@ RUN --mount=type=cache,id=pnpm-store-api,target=/root/.pnpm-store\
  --reporter=silent
 
 WORKDIR /usr/src/app/apps/api
+RUN pnpm install
 CMD [ "pm2-runtime","start", "dist/main.js" ]
