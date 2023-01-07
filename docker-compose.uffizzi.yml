@@ -24,6 +24,7 @@ services:
       - PGID=1000
       - MONGO_INITDB_ROOT_USERNAME=mongodb
       - MONGO_INITDB_ROOT_PASSWORD=mongodb
+      - MONGO_INITDB_DATABASE=novu-db
     volumes:
       - mongodb:/data/db
     ports:
