@@ -20,8 +20,6 @@ services:
     logging:
       driver: "none"
     environment:
-      - PUID=1000
-      - PGID=1000
       - MONGO_INITDB_ROOT_USERNAME=mongodb
       - MONGO_INITDB_ROOT_PASSWORD=mongodb
       - MONGO_INITDB_DATABASE=novu-db
