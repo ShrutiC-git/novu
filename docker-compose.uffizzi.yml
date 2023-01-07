@@ -16,15 +16,15 @@ services:
 
   mongodb:
     image: mongo
-    container_name: mongodb
+    # container_name: mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - mongodb:/data/db
-    ports:
-      - 27017:27017
-    restart: unless-stopped
+    # ports:
+    #   - 27017:27017
+    # restart: unless-stopped
 
   api:
     image: "${API_IMAGE}"
@@ -67,7 +67,7 @@ services:
     environment:
       PORT: 3002
       NODE_ENV: local
-      MONGO_URL: mongodb://admin:password@localhost27017admin?authSource=admin
+      MONGO_URL: mongodb://admin:password@localhost27017/admin?authSource=admin
       REDIS_HOST: localhost
       REDIS_PORT: 6379
       JWT_SECRET: your-secret
