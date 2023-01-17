@@ -197,7 +197,16 @@
     "getsentry",
     "martinbeentjes",
     "varvalue",
-    "varname"
+    "varname",
+    "uffizzi",
+    "WORKDIR",
+    "Uffizzi's",
+    "envsubst",
+    "testnovu",
+    "testapp",
+    "novuapp",
+    "yahoofs",
+    "novutest"
   ],
   "flagWords": [],
   "patterns": [
